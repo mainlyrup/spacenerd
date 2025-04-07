@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rup | Aerospace Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      background: #000;
+      overflow-x: hidden;
+      color: #fff;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+    }
+
+    nav {
+      position: fixed;
+      top: 20px;
+      right: 40px;
+      z-index: 100;
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffaa33;
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #ffaa33;
+      margin-bottom: 10px;
+    }
+
+    header p {
+      font-size: 1.3rem;
+      color: #ccc;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 60px auto;
+      padding: 40px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 12px;
+      backdrop-filter: blur(4px);
+    }
+
+    section h2 {
+      font-size: 2rem;
+      color: #ffaa33;
+      margin-bottom: 20px;
+    }
+
+    section p, ul {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #dddddd;
+    }
+
+    ul {
+      list-style: square inside;
+      padding-left: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Star Background Canvas -->
+  <canvas id="stars"></canvas>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Hero Section -->
+  <header>
+    <h1>Hi, I'm Rup</h1>
+    <p>Aerospace Engineer | Human Spaceflight Explorer</p>
+  </header>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>
+      I'm a Master's student at the University of Colorado Boulder, specializing in Bioastronautics and Astrodynamics. Passionate about human spaceflight, satellite navigation, and the future of interplanetary travel. I blend engineering knowledge with creativity to help shape the next era of space exploration.
+    </p>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li><strong>Programming:</strong> Python, MATLAB, C, C++, Simulink</li>
+      <li><strong>Modeling & Design:</strong> SolidWorks, AutoCAD</li>
+      <li><strong>Space Systems:</strong> GNSS, Spacecraft Design, Human Factors</li>
+      <li><strong>Tools & Tech:</strong> Git, LaTeX, ROS, ANSYS</li>
+      <li><strong>Soft Skills:</strong> Leadership, Team Management, Communication</li>
+    </ul>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <h2>Projects</h2>
+    <ul>
+      <li><strong>Mars Mission Capstone:</strong> Spacecraft Dynamics and Navigation</li>
+      <li><strong>CUBESAT "Spitzy Bitzy":</strong> Satellite communications & ground testing</li>
+      <li><strong>Human Spaceflight Habitat Study:</strong> EVA risk and performance planning</li>
+      <li><strong>Medical UAV VTOL Design:</strong> Emergency payload delivery drone</li>
+    </ul>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Me</h2>
+    <p>Email: rup.aero@gmail.com</p>
+    <p>LinkedIn: <a href="https://www.linkedin.com/in/mainlyrup" target="_blank">linkedin.com/in/mainlyrup</a></p>
+    <p>GitHub: <a href="https://github.com/mainlyrup" target="_blank">github.com/mainlyrup</a></p>
+  </section>
+
+  <!-- Star Animation Script -->
+  <script>
+    const canvas = document.getElementById("stars");
+    const ctx = canvas.getContext("2d");
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+
+    resizeCanvas();
+    window.addEventListener("resize", resizeCanvas);
+
+    const stars = [];
+    for (let i = 0; i < 150; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.5,
+        v: Math.random() * 0.3 + 0.2
+      });
+    }
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (const star of stars) {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
+        ctx.fillStyle = "#fff";
+        ctx.fill();
+        star.y += star.v;
+        if (star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+        }
+      }
+      requestAnimationFrame(animateStars);
+    }
+
+    animateStars();
+  </script>
+
+</body>
+</html>
