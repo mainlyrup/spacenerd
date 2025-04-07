@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rup | Aerospace Portfolio</title>
+  <a href="#about">About</a>
+
   <style>
     html, body {
       margin: 0;
@@ -79,6 +81,44 @@
         font-size: 0.9rem;
       }
     }
+    #about {
+  background: transparent;
+  padding: 80px 20px;
+  color: #ffffff;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 40px 30px;
+  border-radius: 10px;
+  border: 1px solid #ffaa33;
+  box-shadow: 0 0 15px rgba(255, 170, 51, 0.4);
+}
+
+.about-container h2 {
+  font-size: 2.5rem;
+  color: #ffaa33;
+  margin-bottom: 20px;
+}
+
+.about-container p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ddd;
+}
+
+.about-container blockquote {
+  margin-top: 20px;
+  font-style: italic;
+  color: #ffcc88;
+  font-size: 1.1rem;
+}
+
   </style>
 </head>
 <body>
@@ -88,12 +128,24 @@
 
   <!-- Hero Section -->
   <div class="hero">
+    <section id="about">
+  <div class="about-container">
+    <h2>About Me</h2>
+    <p>
+      I’m Rup Rathod, an Aerospace Engineer deeply passionate about space exploration, human spaceflight, and satellite engineering. With hands-on experience in satellite navigation and bioastronautics, I aim to contribute to the future of space missions and build sustainable systems for human presence beyond Earth.
+    </p>
+    <blockquote>
+      “Born to orbit, built to explore.” 🚀
+    </blockquote>
+  </div>
+</section>
+
     <!-- Mars PNG -->
     <img src="mars-hero.png" alt="Mars Scene" class="mars-scene" />
 
     <!-- Overlay Text -->
     <div class="intro-text">
-      <h1>Hello, I'm Rup Rathod 🚀</h1>
+      <h1>Hello, I'm Rup Rathod </h1>
       <p>Aerospace Engineer | Human Spaceflight Researcher | Satellite Engineer</p>
     </div>
   </div>
