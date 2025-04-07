@@ -10,8 +10,7 @@
       padding: 0;
       background: #000;
       font-family: 'Segoe UI', sans-serif;
-      color: white;
-      overflow-x: hidden;
+      overflow: hidden;
       height: 100vh;
     }
 
@@ -19,45 +18,46 @@
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
+      width: 100%;
+      height: 100%;
       z-index: 0;
-    }
-
-    .content {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
     }
 
     .hero-wrapper {
       position: relative;
-      width: 100%;
-      max-width: 1000px;
+      width: 90vw;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
     }
 
-    .hero-image {
+    .mars-scene {
+      position: absolute;
       width: 100%;
       height: auto;
-      display: block;
-      animation: hoverFloat 6s ease-in-out infinite;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      pointer-events: none;
     }
 
     .hero-text {
       position: absolute;
-      top: 40%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       text-align: center;
+      z-index: 2;
       color: white;
     }
 
     .hero-text .name {
-      font-size: 2.4rem;
+      font-size: 2.6rem;
       font-weight: bold;
       color: #ffaa33;
       margin-bottom: 12px;
@@ -69,41 +69,38 @@
       margin: 2px 0;
     }
 
-    @keyframes hoverFloat {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-5px);
-      }
-    }
-
     @media (max-width: 768px) {
       .hero-text .name {
-        font-size: 1.6rem;
+        font-size: 2rem;
       }
+
       .hero-wrapper {
-        max-width: 90vw;
+        width: 95vw;
+      }
+
+      .mars-scene {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Starry canvas background -->
   <canvas id="stars"></canvas>
 
-  <div class="content">
-    <div class="hero-wrapper">
-      <img src="mars-hero.png" alt="Mars Landscape" class="hero-image" />
-      <div class="hero-text">
-        <div class="name">Hello, I'm Rup Rathod 🚀</div>
-        <div class="role">Aerospace Engineer</div>
-        <div class="role">Human Spaceflight Researcher</div>
-        <div class="role">Satellite Engineer</div>
-      </div>
+  <!-- Mars PNG & Text -->
+  <div class="hero-wrapper">
+    <img src="mars-hero.png" alt="Mars Landscape" class="mars-scene">
+    <div class="hero-text">
+      <div class="name">Hello, I'm Rup Rathod 🚀</div>
+      <div class="role">Aerospace Engineer</div>
+      <div class="role">Human Spaceflight Researcher</div>
+      <div class="role">Satellite Engineer</div>
     </div>
   </div>
 
+  <!-- Star animation -->
   <script>
     const canvas = document.getElementById("stars");
     const ctx = canvas.getContext("2d");
@@ -144,6 +141,5 @@
 
     animate();
   </script>
-
 </body>
 </html>
