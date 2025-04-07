@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>Rup | Aerospace Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', sans-serif;
       background: black;
       overflow: hidden;
-      color: white;
-      height: 100vh;
+      font-family: 'Segoe UI', sans-serif;
+      height: 100%;
       text-align: center;
     }
 
@@ -29,36 +27,38 @@
     .content {
       position: relative;
       z-index: 2;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
-      height: 100vh;
+      justify-content: center;
+      gap: 20px;
     }
 
-    .content img {
-      max-width: 90%;
-      height: auto;
-      margin-bottom: -200px;
-      pointer-events: none;
+    .mars-hero {
+      width: 70%;
+      max-width: 800px;
+      animation: float 6s ease-in-out infinite;
     }
 
-    .intro-text {
-      position: absolute;
-      bottom: 18%;
-      font-size: 1.2rem;
-      color: white;
-      z-index: 3;
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
     }
 
-    .intro-text h1 {
+    h1 {
       font-size: 2.5rem;
       color: #ffaa33;
-      margin-bottom: 10px;
+      margin: 0;
     }
 
-    .intro-text p {
-      margin: 5px 0;
+    p {
+      margin: 5px;
+      color: #ddd;
       font-size: 1.1rem;
     }
   </style>
@@ -67,42 +67,40 @@
   <canvas id="stars"></canvas>
 
   <div class="content">
-    <img src="assets/rup-mars-hero.png" alt="Mars Landscape Scene" />
-    <div class="intro-text">
-      <h1>Hello, I'm Rup Rathod</h1>
-      <p>Aerospace Engineer</p>
-      <p>Human Spaceflight Researcher</p>
-      <p>Satellite Engineer</p>
-    </div>
+    <img src="rup-mars-hero.png" alt="Mars Landscape Scene" class="mars-hero" />
+    <h1>Hello, I'm Rup Rathod 🚀</h1>
+    <p>Aerospace Engineer</p>
+    <p>Human Spaceflight Researcher</p>
+    <p>Satellite Engineer</p>
   </div>
 
   <script>
     const canvas = document.getElementById("stars");
     const ctx = canvas.getContext("2d");
 
-    function resizeCanvas() {
+    function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
 
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+    window.addEventListener("resize", resize);
+    resize();
 
     const stars = [];
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < 150; i++) {
       stars.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         r: Math.random() * 1.5,
-        v: Math.random() * 0.5 + 0.2
+        v: Math.random() * 0.3 + 0.2
       });
     }
 
-    function animateStars() {
+    function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (const star of stars) {
         ctx.beginPath();
-        ctx.arc(star.x, star.y, star.r, 0, 2 * Math.PI);
+        ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fillStyle = "#fff";
         ctx.fill();
         star.y += star.v;
@@ -111,10 +109,10 @@
           star.x = Math.random() * canvas.width;
         }
       }
-      requestAnimationFrame(animateStars);
+      requestAnimationFrame(animate);
     }
 
-    animateStars();
+    animate();
   </script>
 </body>
 </html>
