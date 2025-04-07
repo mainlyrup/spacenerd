@@ -8,70 +8,236 @@
     html, body {
       margin: 0;
       padding: 0;
-      overflow: hidden;
       background: #000;
-      height: 100%;
       font-family: 'Segoe UI', sans-serif;
+      color: white;
+      min-height: 100vh;
     }
-
-    canvas {
+    
+    /* The starry background - fixed position to stay in place during scroll */
+    #stars {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: -1;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
     }
-
-    .content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+    
+    /* Main container for all content */
+    .main-container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    /* Navigation */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #ffaa33;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+    
+    .nav-links a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: #ffaa33;
+    }
+    
+    /* Hero section */
+    .hero {
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
       text-align: center;
-      color: white;
     }
-
-    .content h1 {
+    
+    .hero h1 {
       font-size: 3rem;
       color: #ffaa33;
       margin-bottom: 10px;
     }
-
-    .content p {
+    
+    .hero p {
       font-size: 1.2rem;
       color: #ccc;
       margin-bottom: 5px;
     }
-
+    
     .tagline {
       font-style: italic;
       color: #8bbcff;
       font-size: 1rem;
     }
+    
+    /* About section */
+    .about {
+      padding: 50px 0;
+    }
+    
+    .section-title {
+      font-size: 2rem;
+      color: #ffaa33;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    
+    /* Skills section */
+    .skills {
+      padding: 50px 0;
+    }
+    
+    .skills-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+    
+    .skill-category {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      border-radius: 5px;
+      width: 100%;
+      max-width: 300px;
+    }
+    
+    .skill-category h3 {
+      color: #8bbcff;
+      margin-bottom: 10px;
+    }
+    
+    /* Projects section */
+    .projects {
+      padding: 50px 0;
+    }
+    
+    /* Contact section */
+    .contact {
+      padding: 50px 0;
+      text-align: center;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 20px 0;
+      color: #ccc;
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Canvas for stars - fixed position for entire site -->
   <canvas id="stars"></canvas>
-
-  <div class="content">
-    <h1>Hello, I'm Rup 🚀</h1>
-    <p>Aerospace Engineer | Human Spaceflight Explorer</p>
-    <div class="tagline">Dreaming big, building bigger. ✨</div>
+  
+  <!-- Main content container -->
+  <div class="main-container">
+    <!-- Navigation -->
+    <nav>
+      <div class="logo">Rup</div>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+    
+    <!-- Hero section -->
+    <section id="home" class="hero">
+      <h1>Hello, I'm Rup 🚀</h1>
+      <p>Aerospace Engineer | Human Spaceflight Explorer</p>
+      <div class="tagline">Dreaming big, building bigger. ✨</div>
+    </section>
+    
+    <!-- About section -->
+    <section id="about" class="about">
+      <h2 class="section-title">About Me</h2>
+      <p>This is where you can include information about your background, experience, and passion for aerospace engineering.</p>
+    </section>
+    
+    <!-- Skills section -->
+    <section id="skills" class="skills">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-container">
+        <div class="skill-category">
+          <h3>Programming Languages</h3>
+          <p>Julia, Python, Embedded C, C, C++, R programming, SQL, HTML</p>
+        </div>
+        <div class="skill-category">
+          <h3>Visualization</h3>
+          <p>MATLAB, Mathematica, QGIS, GMAT, Jupyter Notebook</p>
+        </div>
+        <div class="skill-category">
+          <h3>3D Modeling</h3>
+          <p>SolidWorks, CATIA, NX-CAD, Fusion 360, Pro-E</p>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Projects section -->
+    <section id="projects" class="projects">
+      <h2 class="section-title">Projects</h2>
+      <p>Here you can showcase your aerospace projects and accomplishments.</p>
+    </section>
+    
+    <!-- Contact section -->
+    <section id="contact" class="contact">
+      <h2 class="section-title">Contact</h2>
+      <p>Feel free to reach out for collaborations or opportunities.</p>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Rup | Aerospace Engineer</p>
+    </footer>
   </div>
-
+  
   <script>
     const canvas = document.getElementById("stars");
     const ctx = canvas.getContext("2d");
-
+    
     function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
-
+    
     window.addEventListener("resize", resize);
     resize();
-
+    
     const stars = [];
     for (let i = 0; i < 150; i++) {
       stars.push({
@@ -81,25 +247,28 @@
         v: Math.random() * 0.3 + 0.2
       });
     }
-
+    
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
       for (const star of stars) {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fillStyle = "#fff";
         ctx.fill();
+        
         star.y += star.v;
+        
         if (star.y > canvas.height) {
           star.y = 0;
           star.x = Math.random() * canvas.width;
         }
       }
+      
       requestAnimationFrame(animate);
     }
-
+    
     animate();
   </script>
 </body>
 </html>
-
