@@ -2,164 +2,116 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rup | Aerospace Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    /* Reset and basic styles */
-    * {
+    html, body {
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      font-family: 'Segoe UI', sans-serif;
       background: #000;
       color: white;
+      font-family: 'Segoe UI', sans-serif;
       overflow-x: hidden;
     }
 
-    /* Starry background */
+    /* Star background canvas */
     #stars {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
+      width: 100vw;
+      height: 100vh;
       z-index: 0;
     }
 
-    /* Hero Section */
+    /* Hero Section Container */
     .hero {
       position: relative;
-      min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      align-items: center;
       justify-content: center;
-      z-index: 1;
+      align-items: center;
+      flex-direction: column;
       text-align: center;
-      padding: 20px;
-    }
-
-    .hero img {
-      width: 100%;
-      max-width: 1200px;
-      height: auto;
+      height: 100vh;
+      width: 100vw;
+      overflow: hidden;
       z-index: 1;
     }
 
-    .hero-text {
-      position: absolute;
-      top: 45%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 2;
+    /* Mars PNG Image */
+    .mars-scene {
+      width: 100vw;
+      height: auto;
+      max-width: 100%;
+      object-fit: contain;
+      z-index: 1;
     }
 
-    .hero h1 {
+    /* Overlay Text on PNG */
+    .intro-text {
+      position: absolute;
+      top: 40%;
+      transform: translateY(-50%);
+      color: white;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+      width: 100%;
+    }
+
+    .intro-text h1 {
       font-size: 2.5rem;
       color: #ffaa33;
       margin-bottom: 10px;
     }
 
-    .hero p {
+    .intro-text p {
       font-size: 1rem;
-      color: #ccc;
-    }
-
-    /* About Me Section */
-    #about {
-      background: transparent;
-      padding: 80px 20px;
-      color: #ffffff;
-      text-align: center;
-      position: relative;
-      z-index: 2;
-    }
-
-    .about-container {
-      max-width: 800px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.05);
-      padding: 40px 30px;
-      border-radius: 10px;
-      border: 1px solid #ffaa33;
-      box-shadow: 0 0 15px rgba(255, 170, 51, 0.4);
-    }
-
-    .about-container h2 {
-      font-size: 2.5rem;
-      color: #ffaa33;
-      margin-bottom: 20px;
-    }
-
-    .about-container p {
-      font-size: 1.1rem;
-      line-height: 1.6;
-      color: #ddd;
-    }
-
-    .about-container blockquote {
-      margin-top: 20px;
-      font-style: italic;
-      color: #ffcc88;
-      font-size: 1.1rem;
+      margin: 4px 0;
     }
 
     @media (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
+      .intro-text h1 {
+        font-size: 1.8rem;
       }
 
-      .about-container {
-        padding: 20px;
+      .intro-text p {
+        font-size: 0.9rem;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Star background -->
+  <!-- Star Background -->
   <canvas id="stars"></canvas>
 
   <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="hero-text">
+  <div class="hero">
+    <!-- Mars PNG -->
+    <img src="mars-hero.png" alt="Mars Scene" class="mars-scene" />
+
+    <!-- Overlay Text -->
+    <div class="intro-text">
       <h1>Hello, I'm Rup Rathod 🚀</h1>
       <p>Aerospace Engineer</p>
       <p>Human Spaceflight Researcher</p>
       <p>Satellite Engineer</p>
     </div>
-    <img src="mars-hero.png" alt="Mars Landscape" />
-  </section>
+  </div>
 
-  <!-- About Section -->
-  <section id="about">
-    <div class="about-container">
-      <h2>About Me</h2>
-      <p>
-        I’m Rup Rathod, an Aerospace Engineer deeply passionate about space exploration, human spaceflight, and satellite engineering. With hands-on experience in satellite navigation and bioastronautics, I aim to contribute to the future of space missions and build sustainable systems for human presence beyond Earth.
-      </p>
-      <blockquote>
-        “Born to orbit, built to explore.” 🚀
-      </blockquote>
-    </div>
-  </section>
-
-  <!-- Star animation -->
+  <!-- Stars Animation Script -->
   <script>
     const canvas = document.getElementById("stars");
     const ctx = canvas.getContext("2d");
 
-    function resizeCanvas() {
+    function resize() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
     }
 
-    window.addEventListener("resize", resizeCanvas);
-    resizeCanvas();
+    window.addEventListener("resize", resize);
+    resize();
 
     const stars = [];
     for (let i = 0; i < 150; i++) {
@@ -173,17 +125,20 @@
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       for (const star of stars) {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fillStyle = "#fff";
         ctx.fill();
+
         star.y += star.v;
         if (star.y > canvas.height) {
           star.y = 0;
           star.x = Math.random() * canvas.width;
         }
       }
+
       requestAnimationFrame(animate);
     }
 
