@@ -23,7 +23,35 @@
       height: 100vh;
       z-index: 0;
     }
+ /* NAVBAR */
+    .navbar {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      display: flex;
+      gap: 25px;
+      z-index: 5;
+    }
 
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s ease;
+    }
+
+    .navbar a:hover {
+      color: #ffaa33;
+    }
+
+    .logo-icon {
+      position: absolute;
+      top: 15px;
+      left: 25px;
+      height: 40px;
+    }
+    
     /* Hero Section Container */
     .hero {
       position: relative;
@@ -70,62 +98,27 @@
       margin: 4px 0;
     }
 
-     <!-- Navbar -->
-<header class="navbar">
-  <div class="logo">
-    <img src="your-icon.png" alt="Logo Icon" class="logo-icon" />
-    <span class="logo-text">Rup</span>
-  </div>
-  <nav class="nav-links">
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#publications">Publications</a>
-    <a href="#contact">Contact</a>
-    <a href="#spaceblog">Space Blog</a>
-  </nav>
-</header>
+     @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        top: 15px;
+        right: 20px;
+        gap: 12px;
+      }
 
-   /* NAVBAR STYLES */
-.navbar {
-  position: absolute;
-  top: 10;
-  right: 0;
-  width: 100%;
-  padding: 20px 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  z-index: 999;
-}
+      .intro-text h1 {
+        font-size: 1.8rem;
+      }
 
-.logo {
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ffaa33;
-}
+      .intro-text p {
+        font-size: 0.9rem;
+      }
 
-.logo-icon {
-  height: 30px;
-  margin-right: 10px;
-}
-
-.nav-links {
-  display: flex;
-  gap: 25px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover {
-  color: #ffaa33;
-}
+      .logo-icon {
+        height: 30px;
+        top: 10px;
+        left: 15px;
+      }
 
     }
   </style>
@@ -135,11 +128,12 @@
   <!-- Star Background -->
   <canvas id="stars"></canvas>
 
-   <!-- Right Navbar -->
-  <div class="right-navbar">
+  <!-- Navbar -->
+  <img src="astronaut-icon.png" alt="Astronaut Icon" class="logo-icon" />
+  <div class="navbar">
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
-    <a href="#portfolio">Portfolio</a>
+    <a href="#publications">Publications</a>
     <a href="#contact">Contact</a>
     <a href="#blog">Space Blog</a>
   </div>
