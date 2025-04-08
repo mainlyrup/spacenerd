@@ -70,12 +70,44 @@
       margin: 4px 0;
     }
 
+     /* Right Navbar */
+    .right-navbar {
+      position: fixed;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      z-index: 3;
+    }
+
+    .right-navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .right-navbar a:hover {
+      color: #ffaa33;
+    }
+
     @media (max-width: 768px) {
       .intro-text h1 {
         font-size: 1.8rem;
       }
 
       .intro-text p {
+        font-size: 0.9rem;
+      }
+      .right-navbar {
+        right: 10px;
+        gap: 10px;
+      }
+
+      .right-navbar a {
         font-size: 0.9rem;
       }
     }
@@ -86,6 +118,15 @@
   <!-- Star Background -->
   <canvas id="stars"></canvas>
 
+   <!-- Right Navbar -->
+  <div class="right-navbar">
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+    <a href="#blog">Space Blog</a>
+  </div>
+  
   <!-- Hero Section -->
   <div class="hero">
     <!-- Mars PNG -->
