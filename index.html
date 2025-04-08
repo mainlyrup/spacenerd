@@ -85,30 +85,29 @@
   </nav>
 </header>
 
-    /* Navbar Styles */
+   /* NAVBAR STYLES */
 .navbar {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 0;
   width: 100%;
+  padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  z-index: 5;
+  z-index: 999;
 }
 
 .logo {
   display: flex;
   align-items: center;
-  color: white;
-  font-weight: bold;
   font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffaa33;
 }
 
 .logo-icon {
   height: 30px;
-  width: auto;
   margin-right: 10px;
 }
 
@@ -118,10 +117,10 @@
 }
 
 .nav-links a {
-  color: white;
   text-decoration: none;
+  color: white;
   font-weight: 500;
-  transition: color 0.3s;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
