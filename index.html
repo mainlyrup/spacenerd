@@ -11,10 +11,10 @@
       background: #000;
       color: white;
       font-family: 'Segoe UI', sans-serif;
+      scroll-behavior: smooth;
       overflow-x: hidden;
     }
 
-    /* Star background canvas */
     #stars {
       position: fixed;
       top: 0;
@@ -23,37 +23,35 @@
       height: 100vh;
       z-index: 0;
     }
- /* NAVBAR */
+
     .navbar {
-  position: absolute;
-  top: 20px;
-  right: 30px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  z-index: 5;
-}
+      position: fixed;
+      top: 20px;
+      right: 30px;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      font-size: 0.9rem;
+    }
 
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: color 0.3s ease;
-}
+    .navbar a {
+      text-decoration: none;
+      color: white;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
 
-.navbar a:hover {
-  color: #ffaa33;
-}
+    .navbar a:hover {
+      color: #ffaa33;
+    }
 
-.logo-icon {
-   height: 24px;
-  width: auto;
-  margin-right: 8px;
-}
+    .logo-icon {
+      height: 24px;
+      width: auto;
+      margin-right: 8px;
+    }
 
-    
-    /* Hero Section Container */
     .hero {
       position: relative;
       display: flex;
@@ -67,7 +65,6 @@
       z-index: 1;
     }
 
-    /* Mars PNG Image */
     .mars-scene {
       width: 100vw;
       height: auto;
@@ -76,7 +73,6 @@
       z-index: 1;
     }
 
-    /* Overlay Text on PNG */
     .intro-text {
       position: absolute;
       top: 40%;
@@ -99,46 +95,106 @@
       margin: 4px 0;
     }
 
-     @media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-    top: 15px;
-    right: 20px;
-    gap: 12px;
-  }
+    .section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+      z-index: 2;
+      position: relative;
+    }
 
-  .intro-text h1 {
-    font-size: 1.8rem;
-  }
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #ffaa33;
+    }
 
-  .intro-text p {
-    font-size: 0.9rem;
-  }
-}
+    .about-wrapper {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .about-photo {
+      max-width: 300px;
+      border-radius: 10px;
+    }
+
+    .about-text {
+      max-width: 600px;
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .skills-list {
+      margin-top: 20px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .topics {
+      margin-top: 40px;
+    }
+
+    .topics span {
+      display: inline-block;
+      margin: 8px;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-end;
+        right: 15px;
+        top: 15px;
+        gap: 10px;
+      }
+
+      .intro-text h1 {
+        font-size: 1.8rem;
+      }
+
+      .intro-text p {
+        font-size: 0.9rem;
+      }
+
+      .logo-icon {
+        height: 22px;
+        margin-right: 5px;
+      }
+
+      .about-wrapper {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .about-text {
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Star Background -->
+  <!-- Stars Background -->
   <canvas id="stars"></canvas>
 
   <!-- Navbar -->
-  
   <div class="navbar">
-    <img src="astronaut-icon.png" alt="Astronaut Icon" class="logo-icon" />
+    <img src="helmet-icon.png" class="logo-icon" alt="helmet" />
     <a href="#about">About</a>
     <a href="#projects">Projects</a>
     <a href="#publications">Publications</a>
     <a href="#blog">Space Blog</a>
     <a href="#contact">Contact</a>
   </div>
-  
+
   <!-- Hero Section -->
   <div class="hero">
-    <!-- Mars PNG -->
     <img src="mars-hero.png" alt="Mars Scene" class="mars-scene" />
-
-    <!-- Overlay Text -->
     <div class="intro-text">
       <h1>Hello, I'm Rup Rathod 🚀</h1>
       <p>Aerospace Engineer</p>
@@ -146,6 +202,38 @@
       <p>Satellite Engineer</p>
     </div>
   </div>
+
+  <!-- About Me Section -->
+  <section class="section" id="about">
+    <h2>About Me</h2>
+    <div class="about-wrapper">
+      <img src="rup-profile.jpg" alt="Rup Photo" class="about-photo" />
+      <div class="about-text">
+        <p>
+          I’m a passionate Aerospace Engineer with a focus on human spaceflight, satellite navigation, and systems design. Currently pursuing my Master’s at CU Boulder, I am driven by curiosity and the dream of contributing to space exploration.
+        </p>
+        <p>
+          With hands-on experience in designing lunar habitats, working on CubeSat missions, and managing data systems, I bridge technical precision with a love for storytelling. I also create content, lead teams, and aspire to be among those shaping the future of off-world living.
+        </p>
+
+        <div class="skills-list">
+          <strong>Languages:</strong> Python, MATLAB, C++, SQL<br/>
+          <strong>Tools:</strong> SolidWorks, Fusion 360, GitHub, Jupyter<br/>
+          <strong>Domains:</strong> Satellite Navigation, C&DH Systems, Human Factors<br/>
+        </div>
+      </div>
+    </div>
+
+    <div class="topics">
+      <h2>Topics of Interest</h2>
+      <span style="color: lightgreen;">REMOTE SENSING</span>
+      <span style="color: orange;">DATA ANALYSIS</span>
+      <span style="color: lightblue;">IONOSPHERE</span>
+      <span style="color: violet;">ASTROPHYSICS</span>
+      <span style="color: gold;">SATELLITE SYSTEMS</span>
+      <span style="color: lightcyan;">SPACE SCIENCE</span>
+    </div>
+  </section>
 
   <!-- Stars Animation Script -->
   <script>
@@ -172,23 +260,19 @@
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
       for (const star of stars) {
         ctx.beginPath();
         ctx.arc(star.x, star.y, star.r, 0, Math.PI * 2);
         ctx.fillStyle = "#fff";
         ctx.fill();
-
         star.y += star.v;
         if (star.y > canvas.height) {
           star.y = 0;
           star.x = Math.random() * canvas.width;
         }
       }
-
       requestAnimationFrame(animate);
     }
-
     animate();
   </script>
 
