@@ -1,274 +1,150 @@
-import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
-import { Menu, X, ArrowUpRight, Rocket, Edit3, ShoppingBag, Mail, Linkedin, Github } from "lucide-react";
-
-// ---- Minimal Apple/SpaceX aesthetic: monochrome, big type, lots of air ----
-// Tailwind is assumed available. All sections are in one page for app-like smooth scrolling.
-// Replace placeholder content as you go. Connect the Shop buttons to Shopify/Etsy/Payhip later.
-
-const nav = [
-  { id: "home", label: "Home" },
-  { id: "research", label: "Research" },
-  { id: "log", label: "Space Log" },
-  { id: "shop", label: "Shop" },
-  { id: "contact", label: "Contact" },
-];
-
-const projects = [
-  {
-    title: "HiVe Lunar Habitat",
-    subtitle: "Human Spaceflight Graduate Project",
-    blurb: "Full-scale habitat mock-up focusing on life support integration, safe-haven design, and crew workflows.",
-    tags: ["Habitat", "Systems", "Human Factors"],
-  },
-  {
-    title: "Injury & Recovery in Microgravity",
-    subtitle: "Bioastronautics Study",
-    blurb: "Modeling musculoskeletal risk, triage protocols, and autonomous care pathways for long-duration missions.",
-    tags: ["Space Medicine", "Autonomy"],
-  },
-  {
-    title: "Cryo‑Bot Concept",
-    subtitle: "Long‑duration Life Support",
-    blurb: "Transport pod concept for suspended‑care transit using advanced thermal, metabolic, and monitoring loops.",
-    tags: ["Concept", "Life Support"],
-  },
-];
-
-const posts = [
-  {
-    title: "Designing Medical Systems When Earth Is 20 Minutes Away",
-    date: "Oct 24, 2025",
-    excerpt: "Lessons from analog ops on alarms, triage, and human‑automation teaming…",
-  },
-  {
-    title: "Habitat Layouts That Reduce Cognitive Load",
-    date: "Oct 12, 2025",
-    excerpt: "Why calm UI and predictable affordances matter when heart rates spike.",
-  },
-];
-
-const merch = [
-  { name: "HIVE Crew Tee", price: "$28", tag: "Limited", image: "", },
-  { name: "Space Hospital Cap", price: "$24", tag: "New", image: "", },
-  { name: "Mars Systems Hoodie", price: "$48", tag: "Drop", image: "", },
-];
-
-export default function App() {
-  const [open, setOpen] = useState(false);
-
-  const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-    setOpen(false);
-  };
-
-  const year = useMemo(() => new Date().getFullYear(), []);
-
-  return (
-    <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
-      {/* Top Nav */}
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur supports-[backdrop-filter]:bg-black/40">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="flex h-16 items-center justify-between">
-            <button onClick={() => scrollTo("home")} className="flex items-center gap-2 font-semibold tracking-tight">
-              <Rocket className="h-5 w-5" />
-              <span>RUP RATHOD</span>
-            </button>
-
-            <nav className="hidden md:flex items-center gap-8 text-sm">
-              {nav.map((n) => (
-                <button key={n.id} onClick={() => scrollTo(n.id)} className="text-white/70 hover:text-white transition">
-                  {n.label}
-                </button>
-              ))}
-              <a href="#" className="inline-flex items-center gap-1 rounded-full border border-white/10 px-3 py-1 text-xs uppercase tracking-wider hover:border-white/40">Resume <ArrowUpRight className="h-3 w-3"/></a>
-            </nav>
-
-            <button className="md:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">
-              {open ? <X className="h-6 w-6"/> : <Menu className="h-6 w-6"/>}
-            </button>
-          </div>
-        </div>
-        {open && (
-          <div className="md:hidden border-t border-white/10">
-            <div className="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-3">
-              {nav.map((n) => (
-                <button key={n.id} onClick={() => scrollTo(n.id)} className="text-left text-lg text-white/80">
-                  {n.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-      </header>
-
-      {/* Hero */}
-      <section id="home" className="relative flex min-h-[90vh] items-center">
-        <Starfield />
-        <div className="relative mx-auto max-w-6xl px-4 pt-28 pb-16">
-          <motion.h1 initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{duration:0.6}} className="text-5xl md:text-7xl font-semibold tracking-tight">
-            Designing systems for <span className="text-white/60">life beyond Earth</span>
-          </motion.h1>
-          <motion.p initial={{opacity:0, y:20}} animate={{opacity:1, y:0}} transition={{duration:0.8, delay:0.1}} className="mt-6 max-w-2xl text-lg text-white/70">
-            Graduate researcher in Aerospace Engineering (Bioastronautics & Systems). Focused on human‑rated habitats, space medicine, and autonomy. Minimal interface. Maximum clarity.
-          </motion.p>
-          <div className="mt-10 flex flex-wrap items-center gap-3">
-            <button onClick={() => scrollTo("research")} className="rounded-full bg-white text-black px-6 py-3 text-sm font-medium hover:bg-white/90">
-              View Research
-            </button>
-            <button onClick={() => scrollTo("log")} className="rounded-full border border-white/20 px-6 py-3 text-sm hover:border-white/40">
-              Read Space Log
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Research */}
-      <section id="research" className="mx-auto max-w-6xl px-4 py-24">
-        <SectionHeader kicker="Research" title="Selected Work" />
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-          {projects.map((p, i) => (
-            <motion.article
-              key={p.title}
-              initial={{opacity:0, y:12}}
-              whileInView={{opacity:1, y:0}}
-              viewport={{ once: true }}
-              transition={{duration:0.4, delay: i * 0.05}}
-              className="group rounded-2xl border border-white/10 p-5 hover:border-white/30 transition"
-            >
-              <div className="aspect-[16/9] rounded-xl bg-white/5 mb-4"/>
-              <h3 className="text-xl font-medium tracking-tight">{p.title}</h3>
-              <p className="text-white/50 text-sm mt-1">{p.subtitle}</p>
-              <p className="text-white/70 text-sm mt-3">{p.blurb}</p>
-              <div className="mt-4 flex flex-wrap gap-2">
-                {p.tags.map(t => (
-                  <span key={t} className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/60">{t}</span>
-                ))}
-              </div>
-              <div className="mt-5 flex items-center justify-between">
-                <button className="text-sm text-white/70 hover:text-white inline-flex items-center gap-1">Open case study <ArrowUpRight className="h-4 w-4"/></button>
-                <span className="text-xs text-white/40">PDF / DOI</span>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-      </section>
-
-      {/* Space Log */}
-      <section id="log" className="mx-auto max-w-6xl px-4 py-24">
-        <SectionHeader kicker="Journal" title="Space Log" icon={<Edit3 className="h-5 w-5"/>} />
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {posts.map((post, i) => (
-            <motion.article
-              key={post.title}
-              initial={{opacity:0, y:12}}
-              whileInView={{opacity:1, y:0}}
-              viewport={{ once: true }}
-              transition={{duration:0.4, delay: i * 0.05}}
-              className="rounded-2xl border border-white/10 p-5 hover:border-white/30 transition"
-            >
-              <h3 className="text-xl font-medium tracking-tight">{post.title}</h3>
-              <p className="text-white/50 text-xs mt-1">{post.date}</p>
-              <p className="text-white/70 text-sm mt-4">{post.excerpt}</p>
-              <div className="mt-5 flex items-center gap-3">
-                <button className="rounded-full bg-white text-black px-4 py-2 text-xs font-medium">Read</button>
-                <button className="rounded-full border border-white/20 px-4 py-2 text-xs hover:border-white/40">Copy Link</button>
-              </div>
-            </motion.article>
-          ))}
-        </div>
-      </section>
-
-      {/* Shop */}
-      <section id="shop" className="mx-auto max-w-6xl px-4 py-24">
-        <SectionHeader kicker="Merch" title="Minimal Drops" icon={<ShoppingBag className="h-5 w-5"/>} />
-        <p className="text-white/60 max-w-2xl">Print‑on‑demand via Shopify/Printful. Hook your products to the buttons below (or embed Buy Buttons). Keep the palette monochrome; let the typography carry the brand.</p>
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {merch.map((m) => (
-            <div key={m.name} className="rounded-2xl border border-white/10 p-5">
-              <div className="aspect-[4/3] rounded-xl bg-white/5" />
-              <div className="mt-4 flex items-center justify-between">
-                <div>
-                  <h4 className="font-medium tracking-tight">{m.name}</h4>
-                  <p className="text-white/50 text-sm">{m.price}</p>
-                </div>
-                <span className="text-xs text-white/50 border border-white/10 rounded-full px-2 py-1">{m.tag}</span>
-              </div>
-              <div className="mt-4 flex gap-3">
-                <a href="#" className="rounded-full bg-white text-black px-4 py-2 text-xs font-medium">Buy</a>
-                <a href="#" className="rounded-full border border-white/20 px-4 py-2 text-xs hover:border-white/40">Details</a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="mx-auto max-w-6xl px-4 py-24">
-        <SectionHeader kicker="Get in touch" title="Contact" />
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="rounded-2xl border border-white/10 p-6">
-            <h4 className="text-lg font-medium">Collaborations, research, speaking</h4>
-            <p className="text-white/60 text-sm mt-2">Prefer email with a clear subject. Include context, timeline, and desired outcome.</p>
-            <div className="mt-6 flex gap-3">
-              <a href="mailto:hello@example.com" className="inline-flex items-center gap-2 rounded-full bg-white text-black px-5 py-3 text-sm font-medium"><Mail className="h-4 w-4"/> Email</a>
-              <a href="#" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm hover:border-white/40"><Linkedin className="h-4 w-4"/> LinkedIn</a>
-              <a href="#" className="inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm hover:border-white/40"><Github className="h-4 w-4"/> GitHub</a>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-white/10 p-6">
-            <h4 className="text-lg font-medium">Newsletter</h4>
-            <p className="text-white/60 text-sm mt-2">Quarterly notes on human spaceflight, habitat systems, and space medicine.</p>
-            <form className="mt-6 flex gap-3">
-              <input type="email" placeholder="you@planet.com" className="w-full rounded-full bg-white/5 border border-white/10 px-5 py-3 outline-none placeholder:text-white/40 focus:border-white/30"/>
-              <button className="rounded-full bg-white text-black px-5 py-3 text-sm font-medium">Join</button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="border-t border-white/10">
-        <div className="mx-auto max-w-6xl px-4 py-10 text-white/50 text-sm flex flex-col md:flex-row items-center justify-between gap-4">
-          <p>© {year} Rup Rathod</p>
-          <p>Built with React • Minimal UX • Monochrome</p>
-        </div>
-      </footer>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Rup Rathod • Space Systems</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Bioastronautics & Systems — research, space log, and merch." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#home">RUP RATHOD</a>
+      <nav class="links">
+        <a href="#research">Research</a>
+        <a href="#log">Space Log</a>
+        <a href="#shop">Shop</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
-  );
-}
+  </header>
 
-function SectionHeader({ kicker, title, icon }) {
-  return (
-    <div className="flex items-center justify-between">
-      <div>
-        <p className="text-white/40 uppercase tracking-[0.2em] text-xs">{kicker}</p>
-        <h2 className="mt-2 text-3xl md:text-4xl font-semibold tracking-tight flex items-center gap-3">
-          {icon ? <span className="opacity-70">{icon}</span> : null}
-          {title}
-        </h2>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="glow"></div>
+    <div class="hero-inner">
+      <h1>Designing systems for <span>life beyond Earth</span></h1>
+      <p>Graduate researcher in Bioastronautics & Systems. Human-rated habitats, space medicine, and calm, minimal UX.</p>
+      <div class="cta">
+        <a href="#research" class="btn btn-solid">View Research</a>
+        <a href="#log" class="btn btn-ghost">Read Space Log</a>
       </div>
     </div>
-  );
-}
+  </section>
 
-// Simple starfield background using CSS gradients — zero image deps.
-function Starfield() {
-  return (
-    <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_-10%,rgba(255,255,255,0.12),transparent_60%)]"/>
-      <div className="absolute inset-0 opacity-60" style={{
-        backgroundImage:
-          "radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.7) 50%, transparent 51%)," +
-          "radial-gradient(1px 1px at 80% 20%, rgba(255,255,255,0.6) 50%, transparent 51%)," +
-          "radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.6) 50%, transparent 51%)," +
-          "radial-gradient(1px 1px at 30% 80%, rgba(255,255,255,0.5) 50%, transparent 51%)",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "auto",
-      }}/>
-      <div className="absolute inset-x-0 bottom-0 h-56 bg-gradient-to-t from-black to-transparent"/>
+  <!-- RESEARCH -->
+  <section id="research" class="section">
+    <h2 class="section-title">Selected Research</h2>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb"></div>
+        <h3>HiVe Lunar Habitat</h3>
+        <p>Full-scale mock-up; life support integration, safe-haven, and crew workflows.</p>
+        <div class="meta">Habitat • Systems • Human Factors</div>
+        <a class="link" href="#" target="_blank">Case study (PDF)</a>
+      </article>
+
+      <article class="card">
+        <div class="thumb"></div>
+        <h3>Injury & Recovery in Microgravity</h3>
+        <p>Risk modeling and autonomous care pathways for long-duration missions.</p>
+        <div class="meta">Space Medicine • Autonomy</div>
+        <a class="link" href="#" target="_blank">Abstract / DOI</a>
+      </article>
+
+      <article class="card">
+        <div class="thumb"></div>
+        <h3>Cryo-Bot Concept</h3>
+        <p>Suspended-care transport pod: thermal control, metabolic support, monitoring loops.</p>
+        <div class="meta">Concept • Life Support</div>
+        <a class="link" href="#" target="_blank">Concept Notes</a>
+      </article>
     </div>
-  );
-}
+  </section>
+
+  <!-- BLOG / SPACE LOG -->
+  <section id="log" class="section">
+    <h2 class="section-title">Space Log</h2>
+    <div class="grid grid-2">
+      <article class="post">
+        <h3>Designing Medical Systems When Earth Is 20 Minutes Away</h3>
+        <div class="date">Oct 24, 2025</div>
+        <p>Lessons from analog ops on alarms, triage, and human-automation teaming…</p>
+        <a class="link" href="#" target="_blank">Read post</a>
+      </article>
+
+      <article class="post">
+        <h3>Habitat Layouts That Reduce Cognitive Load</h3>
+        <div class="date">Oct 12, 2025</div>
+        <p>Why calm UI and predictable affordances matter when heart rates spike.</p>
+        <a class="link" href="#" target="_blank">Read post</a>
+      </article>
+    </div>
+    <p class="hint">Tip: for each new blog, duplicate a <em>post</em> block and update the title + text.</p>
+  </section>
+
+  <!-- SHOP -->
+  <section id="shop" class="section">
+    <h2 class="section-title">Minimal Drops</h2>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb"></div>
+        <h3>HIVE Crew Tee</h3>
+        <div class="meta">$28 — Limited</div>
+        <a class="btn btn-solid" href="#" target="_blank">Buy</a>
+      </article>
+
+      <article class="card">
+        <div class="thumb"></div>
+        <h3>Space Hospital Cap</h3>
+        <div class="meta">$24 — New</div>
+        <a class="btn btn-solid" href="#" target="_blank">Buy</a>
+      </article>
+
+      <article class="card">
+        <div class="thumb"></div>
+        <h3>Mars Systems Hoodie</h3>
+        <div class="meta">$48 — Drop</div>
+        <a class="btn btn-solid" href="#" target="_blank">Buy</a>
+      </article>
+    </div>
+    <p class="hint">Hook these buttons to Shopify/Etsy/Payhip links. No store yet? Use a Google Form + payment link to start scrappy.</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <h2 class="section-title">Contact</h2>
+    <div class="grid grid-2">
+      <div class="card">
+        <h3>Collaborations & Research</h3>
+        <p>Email with context + timeline.</p>
+        <a class="btn btn-solid" href="mailto:hello@example.com">Email</a>
+      </div>
+      <div class="card">
+        <h3>Newsletter</h3>
+        <p>Quarterly notes on human spaceflight, habitat systems, and space medicine.</p>
+        <a class="btn btn-ghost" href="#" target="_blank">Join</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div>© <span id="year"></span> Rup Rathod • Minimal UX</div>
+  </footer>
+
+  <script>
+    // tiny helpers
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // smooth scroll for anchor links (native CSS covers most, this helps older browsers)
+    document.querySelectorAll('a[href^=\"#\"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href').slice(1);
+        const el = document.getElementById(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+      });
+    });
+  </script>
+</body>
+</html>
