@@ -2,236 +2,131 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Rup Rathod • Space Systems</title>
+  <title>Rup Rathod — SoL</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Bioastronautics & Systems — research, NEOSIS (Mars log), and contact." />
-  <style>
-    :root { --bg:#000; --fg:#fff; --muted:rgba(255,255,255,.6); --line:rgba(255,255,255,.12); }
-    *{box-sizing:border-box}
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial}
-    a{color:var(--fg);text-decoration:none}
-    .nav{position:sticky;top:0;border-bottom:1px solid var(--line);backdrop-filter:blur(8px);background:rgba(0,0,0,.4);z-index:10}
-    .nav-inner{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
-    .brand{letter-spacing:.12em;font-weight:800}
-    .links a{margin-left:18px;color:var(--muted)} .links a:hover{color:var(--fg)}
-    .hero{min-height:60vh;display:grid;place-items:center;position:relative;overflow:hidden}
-    .glow{position:absolute;inset:-20% -20% auto -20%;height:50vh;background:radial-gradient(circle at 50% 0%,rgba(255,255,255,.14),transparent 60%)}
-    .hero-inner{max-width:1100px;padding:100px 20px 40px}
-    .hero h1{font-size:clamp(42px,7vw,86px);line-height:1.02;letter-spacing:-.02em;margin:0}
-    .hero h1 .muted{color:var(--muted)}
-    .hero p{color:var(--muted);max-width:760px;margin-top:16px}
-    .cta{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
-    .btn{border-radius:999px;padding:10px 18px;border:1px solid var(--line);display:inline-block;font-weight:600}
-    .btn-solid{background:var(--fg);color:#000;border-color:var(--fg)} .btn-solid:hover{filter:brightness(.9)}
-    .btn-ghost{color:var(--fg)} .btn-ghost:hover{border-color:rgba(255,255,255,.4)}
-    .section{max-width:1100px;margin:0 auto;padding:72px 20px}
-    .section-title{font-size:clamp(26px,4vw,38px);letter-spacing:-.01em;margin:0 0 22px}
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-    .grid-2{grid-template-columns:repeat(2,1fr)}
-    @media (max-width:900px){.grid{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
-    .card,.post{border:1px solid var(--line);border-radius:16px;padding:18px;background:rgba(255,255,255,.02)}
-    .thumb{aspect-ratio:16/9;border-radius:12px;background:rgba(255,255,255,.06);margin-bottom:12px}
-    .meta{color:var(--muted);font-size:14px;margin:6px 0 10px}
-    .link{color:var(--muted);text-decoration:underline}.link:hover{color:var(--fg)}
-    .post h3{margin:0 0 6px}.date{font-size:13px;color:var(--muted);margin-bottom:10px}
-    .actions{display:flex;gap:10px;align-items:center;margin-top:10px}
-    .like-btn{border:1px solid var(--line);border-radius:999px;padding:6px 10px;background:transparent;cursor:pointer;color:var(--fg)}
-    .like-btn.liked{background:var(--fg);color:#000;border-color:var(--fg)}
-    .comments{margin-top:12px;border-top:1px solid var(--line);padding-top:10px}
-    .comment{border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:8px;background:rgba(255,255,255,.02);white-space:pre-wrap}
-    .comment-form{display:flex;gap:8px;margin-top:10px}
-    .comment-input{flex:1;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.02);color:var(--fg);padding:10px}
-    .footer{border-top:1px solid var(--line);text-align:center;padding:28px 20px;color:var(--muted)}
-    html { scroll-behavior: smooth; }
-  </style>
+  <meta name="description" content="SoL — Logs from the Red Frontier. Research, systems, and human spaceflight by Rup Rathod." />
+  <meta name="color-scheme" content="dark only" />
+  <meta name="theme-color" content="#000000" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Rup Rathod — SoL" />
+  <meta property="og:description" content="Logs from the Red Frontier. Research, systems, and space medicine." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="og.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="icon" href="favicon.ico" />
+  <link rel="preload" href="styles.css" as="style" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Prefetch app logic after paint -->
+  <link rel="modulepreload" href="app.js" />
 </head>
 <body>
-  <!-- NAV -->
-  <header class="nav">
-    <div class="nav-inner">
-      <a class="brand" href="#home">RUP RATHOD</a>
-      <nav class="links">
+  <!-- Skip navigation for screen readers -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" role="banner">
+    <div class="nav__inner container">
+      <a class="brand" href="#home" aria-label="Go to home">RUP RATHOD</a>
+      <nav class="nav__links" aria-label="Primary">
         <a href="#research">Research</a>
-        <a href="#neosis">SoL</a>
+        <a href="#sol" aria-current="page">SoL</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="glow"></div>
-    <div class="hero-inner">
-      <h1>Rup Rathod — <span class="muted">designing systems for life beyond Earth</span></h1>
-      <p>Bioastronautics & Systems. Human-rated habitats, space medicine, and calm, minimal UX. This site is my lab notebook for the future.</p>
-      <div class="cta">
-        <a href="#research" class="btn btn-solid">See Research</a>
-        <a href="#neosis" class="btn btn-ghost">Enter SoL</a>
+  <main id="main">
+    <!-- HERO -->
+    <section id="home" class="hero" aria-label="Introduction">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <h1 class="hero__title">
+          Rup Rathod — <span class="text-muted">designing systems for life beyond Earth</span>
+        </h1>
+        <p class="hero__lead">
+          Graduate researcher in Bioastronautics & Systems. Human-rated habitats, space medicine, and calm, minimal UX.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--solid" href="#research">See Research</a>
+          <a class="btn btn--ghost" href="#sol">Enter SoL</a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- RESEARCH -->
-  <section id="research" class="section">
-    <h2 class="section-title">Selected Research</h2>
-    <div class="grid">
-      <article class="card">
-        <div class="thumb"></div>
-        <h3>HiVe Lunar Habitat</h3>
-        <p>Full-scale mock-up; life support integration, safe-haven, and crew workflows.</p>
-        <div class="meta">Habitat • Systems • Human Factors</div>
-        <a class="link" href="#" target="_blank">Case study (PDF)</a>
-      </article>
+    <!-- RESEARCH -->
+    <section id="research" class="section" aria-labelledby="research-title">
+      <div class="container">
+        <h2 id="research-title" class="section__title">Selected Research</h2>
+        <div class="grid grid--three" id="research-grid">
+          <!-- Example cards (replace links later) -->
+          <article class="card">
+            <div class="thumb" aria-hidden="true"></div>
+            <h3 class="card__title">HiVe Lunar Habitat</h3>
+            <p class="card__body">Full-scale mock-up; life support integration, safe-haven, and crew workflows.</p>
+            <p class="card__meta">Habitat • Systems • Human Factors</p>
+            <a class="link" href="#" target="_blank" rel="noopener">Case study (PDF)</a>
+          </article>
 
-      <article class="card">
-        <div class="thumb"></div>
-        <h3>Injury & Recovery in Microgravity</h3>
-        <p>Risk modeling and autonomous care pathways for long-duration missions.</p>
-        <div class="meta">Space Medicine • Autonomy</div>
-        <a class="link" href="#" target="_blank">Abstract / DOI</a>
-      </article>
+          <article class="card">
+            <div class="thumb" aria-hidden="true"></div>
+            <h3 class="card__title">Injury & Recovery in Microgravity</h3>
+            <p class="card__body">Risk modeling and autonomous care pathways for long-duration missions.</p>
+            <p class="card__meta">Space Medicine • Autonomy</p>
+            <a class="link" href="#" target="_blank" rel="noopener">Abstract / DOI</a>
+          </article>
 
-      <article class="card">
-        <div class="thumb"></div>
-        <h3>Cryo-Bot Concept</h3>
-        <p>Suspended-care transport pod: thermal control, metabolic support, monitoring loops.</p>
-        <div class="meta">Concept • Life Support</div>
-        <a class="link" href="#" target="_blank">Concept Notes</a>
-      </article>
-    </div>
-  </section>
-
-  <!-- NEOSIS (Mars log) -->
-  <section id="neosis" class="section">
-    <h2 class="section-title">NEOSIS — Notes from the Red Frontier</h2>
-
-    <div class="grid grid-2">
-      <!-- Post 1 -->
-      <article class="post" data-post-id="p1">
-        <h3>Designing Medical Systems When Earth Is 20 Minutes Away</h3>
-        <div class="date">Oct 24, 2025 · #SpaceMedicine #Autonomy</div>
-        <p>Analog ops, alarm strategy, and human-automation teaming for deep-space care.</p>
-
-        <div class="actions">
-          <button class="like-btn" data-like>♡ Like</button>
-          <span class="meta" data-like-count>0 likes</span>
-          <a class="link" href="#" target="_blank">Read post</a>
+          <article class="card">
+            <div class="thumb" aria-hidden="true"></div>
+            <h3 class="card__title">Cryo-Bot Concept</h3>
+            <p class="card__body">Suspended-care transport pod: thermal control, metabolic support, monitoring loops.</p>
+            <p class="card__meta">Concept • Life Support</p>
+            <a class="link" href="#" target="_blank" rel="noopener">Concept Notes</a>
+          </article>
         </div>
-
-        <div class="comments" data-comments>
-          <div class="meta">Comments</div>
-          <div data-comment-list></div>
-          <form class="comment-form" data-comment-form>
-            <input class="comment-input" type="text" placeholder="Add a comment…" />
-            <button class="btn btn-solid" type="submit">Post</button>
-          </form>
-        </div>
-      </article>
-
-      <!-- Post 2 -->
-      <article class="post" data-post-id="p2">
-        <h3>Habitat Layouts That Reduce Cognitive Load</h3>
-        <div class="date">Oct 12, 2025 · #HumanFactors</div>
-        <p>Calm interfaces and predictable affordances when heart rates spike.</p>
-
-        <div class="actions">
-          <button class="like-btn" data-like>♡ Like</button>
-          <span class="meta" data-like-count>0 likes</span>
-          <a class="link" href="#" target="_blank">Read post</a>
-        </div>
-
-        <div class="comments" data-comments>
-          <div class="meta">Comments</div>
-          <div data-comment-list></div>
-          <form class="comment-form" data-comment-form>
-            <input class="comment-input" type="text" placeholder="Add a comment…" />
-            <button class="btn btn-solid" type="submit">Post</button>
-          </form>
-        </div>
-      </article>
-    </div>
-
-    <p class="meta" style="margin-top:14px">
-      Note: likes & comments here are saved in the visitor’s browser (local to them). We can upgrade to GitHub-powered comments later.
-    </p>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact" class="section">
-    <h2 class="section-title">Contact</h2>
-    <div class="grid grid-2">
-      <div class="card">
-        <h3>Collaborations & Research</h3>
-        <p>Email with context + timeline.</p>
-        <a class="btn btn-solid" href="mailto:hello@example.com">Email</a>
       </div>
-      <div class="card">
-        <h3>Newsletter</h3>
-        <p>Quarterly notes on human spaceflight, habitats, and space medicine.</p>
-        <a class="btn btn-ghost" href="#" target="_blank">Join</a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="footer">
-    <div>© <span id="year"></span> Rup Rathod • Minimal UX</div>
+    <!-- SoL (Mars Log) -->
+    <section id="sol" class="section" aria-labelledby="sol-title">
+      <div class="container">
+        <h2 id="sol-title" class="section__title">SoL — <span class="text-muted">Logs from the Red Frontier</span></h2>
+        <p class="section__lead">Thoughtful notes on Mars, human factors, autonomy, and design.</p>
+
+        <!-- posts render here -->
+        <div class="grid grid--two" id="sol-grid" data-sol-grid></div>
+        <p class="note">Likes & comments are saved in your browser. Shared comments (GitHub Discussions) can be enabled later.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="section" aria-labelledby="contact-title">
+      <div class="container">
+        <h2 id="contact-title" class="section__title">Contact</h2>
+        <div class="grid grid--two">
+          <div class="card">
+            <h3 class="card__title">Collaborations & Research</h3>
+            <p class="card__body">Email with context and timeline.</p>
+            <a class="btn btn--solid" href="mailto:hello@example.com">Email</a>
+          </div>
+          <div class="card">
+            <h3 class="card__title">Newsletter</h3>
+            <p class="card__body">Quarterly notes on human spaceflight, habitat systems, and space medicine.</p>
+            <a class="btn btn--ghost" href="#" target="_blank" rel="noopener">Join</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div class="container footer__inner">
+      <div>© <span id="year"></span> Rup Rathod • SoL</div>
+      <div>Built for speed • 0 deps • accessible</div>
+    </div>
   </footer>
 
-  <script>
-    // year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // tiny like/comment engine using localStorage (per-browser persistence)
-    const STORAGE_KEY = 'rup_neosis_state_v1';
-    const state = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-
-    function save() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
-    function initPost(postEl) {
-      const id = postEl.dataset.postId;
-      if (!state[id]) state[id] = { likes: 0, liked: false, comments: [] };
-
-      // Like UI
-      const likeBtn = postEl.querySelector('[data-like]');
-      const likeCount = postEl.querySelector('[data-like-count]');
-      function renderLike() {
-        likeBtn.classList.toggle('liked', !!state[id].liked);
-        likeBtn.textContent = state[id].liked ? '♥ Liked' : '♡ Like';
-        likeCount.textContent = state[id].likes + (state[id].likes === 1 ? ' like' : ' likes');
-      }
-      likeBtn.addEventListener('click', () => {
-        // toggle like (one like per browser)
-        if (state[id].liked) { state[id].liked = false; state[id].likes = Math.max(0, state[id].likes - 1); }
-        else { state[id].liked = true; state[id].likes += 1; }
-        renderLike(); save();
-      });
-
-      // Comments UI
-      const list = postEl.querySelector('[data-comment-list]');
-      const form = postEl.querySelector('[data-comment-form]');
-      function renderComments() {
-        list.innerHTML = '';
-        state[id].comments.forEach((c) => {
-          const div = document.createElement('div');
-          div.className = 'comment';
-          div.textContent = c;
-          list.appendChild(div);
-        });
-      }
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const input = form.querySelector('input');
-        const val = input.value.trim();
-        if (!val) return;
-        state[id].comments.push(val);
-        input.value = '';
-        renderComments(); save();
-      });
-
-      // initial paint
-      renderLike(); renderComments();
-    }
-
-    document.querySelectorAll('[data-post-id]').forEach(initPost);
-  </script>
+  <script src="app.js" type="module"></script>
 </body>
 </html>
